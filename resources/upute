@@ -1,0 +1,15 @@
+Kako bi instalirali sve potrebne library-e u terminalu pokrenite "pip install prerequisites.txt"
+
+Trenutna konfiguracija projekta pretpostavlja rad s TensorFlow-om.
+kako bi instalirali TensorFlow pratite poveznicu: https://www.tensorflow.org/install/pip
+tamo izaberite konfiguraciju sustava te kopirajte dobivenu naredbu u terminal.
+
+Predlažem Vam uporabu PyCharm IDE-a.
+Kako bi u PyCharmu mogli koristiti sve navedene library-e potrebno ih je dodati u Python Interpreter.
+File > Settings > Project > Python Interpreter
+U gornjem livom kutu se nalazi "+", pritisnite i upišite ime library-a koji želite dodati.
+
+Navedene upute su napravljene za Windows sustave i pip.
+-Ukoliko koristite MacOs pod pretpostavkom da već imate instaliran pip sve bi trebalo biti identično.
+-Ukoliko koristite Linux/Ubuntu koristite naredbu "python3 -m pip install upgrade prerequisites.txt".
+-Ukoliko koristite condu umjesto pip-a koristite naredbu "conda install -c anaconda prerequisites.txt".
