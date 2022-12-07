@@ -30,7 +30,7 @@ def preprocess(rgb_img):
 
     return tens, tens_rs
 
+def postprocess(tens, out_ab, mode='bilinear'):
 
-
-
-
+    HW_orig = tens.shape[2:]
+    HW = out_ab.shape[2:]
