@@ -12,6 +12,25 @@ def generate_datasets(images_path, batch_size_images):
     train_dataset, validation_dataset = tf.keras.utils.image_dataset_from_directory(
         images_path,
         labels=None,
+        color_mode='grayscale',
+        label_mode='int',
+        batch_size=batch_size_images,
+        image_size=(img_height, img_width),
+        seed=42,
+        validation_split=0.2,
+        subset="both"
+    )
+    
+    return train_dataset, validation_dataset
+
+def generate_datasets_RGB(images_path, batch_size_images):
+    img_height = 256
+    img_width = 256
+
+    train_dataset, validation_dataset = tf.keras.utils.image_dataset_from_directory(
+        images_path,
+        labels=None,
+        color_mode='rgb',
         label_mode='int',
         batch_size=batch_size_images,
         image_size=(img_height, img_width),
