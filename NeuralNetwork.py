@@ -15,7 +15,7 @@ def create_model(input):
     model = Conv2D(512, (3, 3), activation='relu', padding='same')(model)
     model = Conv2D(256, (3, 3), activation='relu', padding='same')(model)
 
-    embeding = Reshape(28, 28, 1000)(RepeatVector(28 * 28)(Input(shape=(1000,), name='embeding')))
+    embeding = Reshape((28, 28, 1000))(RepeatVector(28 * 28)(Input(shape=((1000,)), name='embeding')))
 
     model = backend.concatenate([model, embeding], axis=3)
     model = Conv2D(256, (1, 1), activation='relu', padding='same')(model)
