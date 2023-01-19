@@ -2,7 +2,7 @@ import os
 import cv2
 
 # Pretvara sve fotografije u boji iz foldera '.\dataset' u crno bijele fotografije te ih smiješta
-# u isti folder s prefiksom 'bw_'
+# u folder '.\dataset_bw' dodavajuci imenima slika prefiks 'bw_'
 
 path = "dataset"
 gray_path = "dataset_bw"

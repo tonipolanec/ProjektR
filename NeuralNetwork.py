@@ -1,45 +1,29 @@
 import tensorflow as tf
-from keras.applications import Xception
-from tensorflow.python.keras.layers import Input, Conv2D, UpSampling2D, RepeatVector, Reshape
-from tensorflow.python.keras.models import Model
-from tensorflow.python.keras import backend
-#tf.compat.v1.disable_eager_execution()
-
+from keras.layers import Conv2D, UpSampling2D, InputLayer
 
 def create_model(input):
-    model = Conv2D(64, (3, 3), activation='relu', padding='same', strides=2)(input)
-    model = Conv2D(128, (3, 3), activation='relu', padding='same')(model)
-    model = Conv2D(128, (3, 3), activation='relu', padding='same', strides=2)(model)
-    model = Conv2D(256, (3, 3), activation='relu', padding='same')(model)
-    model = Conv2D(256, (3, 3), activation='relu', padding='same', strides=2)(model)
-    model = Conv2D(512, (3, 3), activation='relu', padding='same')(model)
-    model = Conv2D(512, (3, 3), activation='relu', padding='same')(model)
-    model = Conv2D(256, (3, 3), activation='relu', padding='same')(model)
-
-    # ovdje nam se javlja error:
-    # ValueError: Graph disconnected: cannot obtain value for tensor Tensor("embeding_1:0", shape=(None, 1000), dtype=float32) at layer "repeat_vector".
-    #embeding = Reshape((Input(shape=((32,32,1000)), name='embeding')))
-#(32, 32, 1000)
-    #model = backend.concatenate(model, axis=3)
-    model = Conv2D(256, (1, 1), activation='relu', padding='same')(model)
-
-    model = Conv2D(256, (3, 3), activation='relu', padding='same')(model)
-    model = Conv2D(128, (3, 3), activation='relu', padding='same')(model)
-    model = UpSampling2D((2, 2))(model)
+    model = Conv2D(8, (3, 3), activation='relu', padding='same', strides=2)(input)
+    model = Conv2D(16, (3, 3), activation='relu', padding='same')(model)
+    model = Conv2D(16, (3, 3), activation='relu', padding='same', strides=2)(model)
+    model = Conv2D(32, (3, 3), activation='relu', padding='same')(model)
+    model = Conv2D(32, (3, 3), activation='relu', padding='same', strides=2)(model)
     model = Conv2D(64, (3, 3), activation='relu', padding='same')(model)
+    model = Conv2D(64, (3, 3), activation='relu', padding='same', strides=2)(model)
+    # model = Conv2D(128, (3, 3), activation='relu', padding='same')(model)
+    # model = Conv2D(128, (3, 3), activation='relu', padding='same', strides=2)(model)
+    model = UpSampling2D((2, 2))(model)
+    # model = Conv2D(128, (3, 3), activation='relu', padding='same')(model)
+    # model = UpSampling2D((2, 2))(model)
     model = Conv2D(64, (3, 3), activation='relu', padding='same')(model)
     model = UpSampling2D((2, 2))(model)
     model = Conv2D(32, (3, 3), activation='relu', padding='same')(model)
-    model = Conv2D(16, (3, 3), activation='relu', padding='same')(model)
-    model = Conv2D(2, (3, 3), activation='tanh', padding='same')(model)
     model = UpSampling2D((2, 2))(model)
+    model = Conv2D(16, (3, 3), activation='relu', padding='same')(model)
+    model = UpSampling2D((2, 2))(model)
+    model = Conv2D(2, (3, 3), activation='tanh', padding='same')(model)
+
+    model = tf.reshape(model, (1, 112, 112, 2))
+    model = tf.image.resize(model, [100, 100])
+    model = tf.reshape(model, (1, 100, 100, 2))
 
     return model
-
-
-
-
-
-
-
-
