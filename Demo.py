@@ -9,7 +9,7 @@ from skimage.color import lab2rgb
 from matplotlib.pyplot import imshow
 
 #load the model
-loaded_model = keras.models.load_model('modelTanh128-100.h5')
+loaded_model = keras.models.load_model('model.h5')
 
 path = input("Enter a path to the black ynd white image: ")
 path_correct = os.path.exists(path) and path.endswith(('.png', '.jpg', '.jpeg'))
