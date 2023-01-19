@@ -11,7 +11,7 @@ from matplotlib.pyplot import imshow
 #load the model
 loaded_model = keras.models.load_model('model.h5')
 
-path = input("Enter a path to the black ynd white image: ")
+path = input("Enter a path to the black and white image: ")
 path_correct = os.path.exists(path) and path.endswith(('.png', '.jpg', '.jpeg'))
 
 if not path_correct:
